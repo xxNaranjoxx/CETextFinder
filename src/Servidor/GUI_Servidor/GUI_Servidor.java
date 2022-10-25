@@ -1,9 +1,13 @@
 package Servidor.GUI_Servidor;
 
+import Cliente.PaqueteEnvio;
+import Servidor.Lectores.LectorTXT;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -38,22 +42,50 @@ public class GUI_Servidor extends JFrame implements Runnable {
         try {
             ServerSocket servidor = new ServerSocket(9999);
 
+            int banderilla;
+            String mensajeTexto;
+
+            PaqueteEnvio paqueteRecibido;
+
             while (true){
                 Socket miSocket = servidor.accept();
 
-                DataInputStream flujoEntrada = new DataInputStream(miSocket.getInputStream());
+                ObjectInputStream paqueteDatos = new ObjectInputStream(miSocket.getInputStream());
 
-                String mensajeTexto = flujoEntrada.readUTF();
+                paqueteRecibido = (PaqueteEnvio) paqueteDatos.readObject();
+
+                banderilla = paqueteRecibido.getBanderilla();
+
+                mensajeTexto = paqueteRecibido.getMensajeTexto();
+
+                if (banderilla == 1){
+                    System.out.println("antes");
+                    LectorTXT txt= new LectorTXT();
+                    String l = txt.leerGraficp();
+                    System.out.println(l);
+                } else if (banderilla == 2) {
+                    System.out.println("ordenNombrebtn");
+                }else if (banderilla == 3) {
+                    System.out.println("ordenFechabtn");
+                }else if (banderilla == 4) {
+                    System.out.println("ordenCantidadPalabrasBtn");
+                }else if (banderilla == 5) {
+                    System.out.println("eliminarDocBtn");
+                }else if (banderilla == 6) {
+                    System.out.println("anadirDocBtn");
+                }else if (banderilla == 7) {
+                    System.out.println("indizarBtn");
+                }
 
 
-                areaTexto.append(mensajeTexto + "\n");
 
                 miSocket.close();
             }
 
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+
 
     }//run
 

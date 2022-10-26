@@ -6,6 +6,8 @@ public class PaqueteEnvio implements Serializable {
     private String mensajeTexto;
     private int banderilla;
 
+    private int documentoEnvio;
+
     public String getMensajeTexto() {
         return mensajeTexto;
     }
@@ -20,5 +22,13 @@ public class PaqueteEnvio implements Serializable {
 
     public void setBanderilla(int banderilla) {
         this.banderilla = banderilla;
+    }
+
+    public int getDocumentoEnvio() {
+        return documentoEnvio;
+    }
+
+    public void setDocumentoEnvio(int documentoEnvio) {
+        this.documentoEnvio = documentoEnvio;
     }
 }//fin clase

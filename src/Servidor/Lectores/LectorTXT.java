@@ -1,6 +1,8 @@
 package Servidor.Lectores;
 
+import javax.swing.*;
 import java.io.*;
+import java.util.Scanner;
 
 public class LectorTXT {
     File f;
@@ -9,6 +11,8 @@ public class LectorTXT {
     private  int lineasTotales;
     String lineaLeida;
     private  int totalCoincidencias;
+
+    private String extiste;
 
     public String leerGraficp(){
         File f;
@@ -59,5 +63,34 @@ public class LectorTXT {
         }
         return resultado;
     }
+
+
+    public void BuscarPalabraStack(String palabra, String documento) throws FileNotFoundException {
+        JOptionPane.showMessageDialog(null,"hola");
+        int val = 0;
+        //String extiste = "null";
+            /*System.out.println("Enter the word to be searched for");
+            Scanner input = new Scanner(System.in);
+            palabra = input.next();*/
+            Scanner file = new Scanner(new File(documento));
+
+            while(file.hasNextLine()){
+                String line = file.nextLine();
+                if(line.indexOf(palabra) != -1){
+                    JOptionPane.showMessageDialog(null,"Word EXISTS in the file");
+                    val = 1;
+                    break;
+                }else{
+                    val = 0;
+                    continue;
+                }
+            }
+            if(val == 0){
+                JOptionPane.showMessageDialog(null,"Word does not exist");
+            }
+
+
+
+    }//BuscarPalabraStack
 
 }//fin clase

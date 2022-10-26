@@ -80,8 +80,14 @@ public class GUI_Cliente extends JFrame {
         panelReproductor.add(indizarBtn);
 
         //Jlist
-        String week[]= { "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
-        JList b= new JList(week);
+
+
+        String prueba = "Prueba.text";
+        String pdf = "Pdf.pdf";
+        String word = "Word.docx";
+
+        String docs[]= { prueba,pdf,word};
+        JList b= new JList(docs);
         JScrollPane scrollPaneJL=new JScrollPane(b);
         scrollPaneJL.setBounds(20,40,100,120);
         panelReproductor.add(scrollPaneJL);
@@ -99,6 +105,8 @@ public class GUI_Cliente extends JFrame {
                     datos.setMensajeTexto(campo1.getText());
 
                     datos.setBanderilla(1);
+
+                    datos.setDocumentoEnvio((b.getSelectedIndex()));
 
                     ObjectOutputStream paqueteDatos = new ObjectOutputStream(miSocket.getOutputStream());
 

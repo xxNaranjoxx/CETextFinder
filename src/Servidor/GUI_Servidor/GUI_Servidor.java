@@ -5,8 +5,6 @@ import Servidor.Lectores.LectorTXT;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.DataInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
@@ -43,8 +41,8 @@ public class GUI_Servidor extends JFrame implements Runnable {
         try {
             ServerSocket servidor = new ServerSocket(9999);
 
-            int banderilla;
-            String mensajeTexto;
+            int banderilla,documentoEnvio;
+            String mensajeTexto, documento;
 
             PaqueteEnvio paqueteRecibido;
 
@@ -59,13 +57,30 @@ public class GUI_Servidor extends JFrame implements Runnable {
 
                 mensajeTexto = paqueteRecibido.getMensajeTexto();
 
+                documentoEnvio = paqueteRecibido.getDocumentoEnvio();
+
                 if (banderilla == 1){
-                    LectorTXT txt= new LectorTXT();
-                    /*String l = txt.leerGraficp();
-                    areaTexto.append(l);*/
-                    File archivo = new File("prueba.txt");
-                    txt.buscarPalabra(archivo,mensajeTexto);
-                    areaTexto.append(String.valueOf(txt.buscarPalabra(archivo,mensajeTexto)));
+                    if(documentoEnvio == 0){
+                        documento = "C:\\Users\\Sebastián Naranjo\\Documents\\GitHub\\CETextFinder\\CETextFinder\\src\\prueba.txt";
+                        areaTexto.append(documento + "\n" + mensajeTexto);
+                        LectorTXT lectorTXT = new LectorTXT();
+                        lectorTXT.BuscarPalabraStack(mensajeTexto, documento);
+                    } else if (documentoEnvio == 1) {
+                        documento = "C:\\Users\\Sebastián Naranjo\\Documents\\GitHub\\CETextFinder\\CETextFinder\\src\\pdf.pdf";
+                        areaTexto.append(documento);
+                        LectorTXT lectorTXT = new LectorTXT();
+                        lectorTXT.BuscarPalabraStack(mensajeTexto, documento);
+                    }else if (documentoEnvio == 2){
+                        documento = "C:\\Users\\Sebastián Naranjo\\Documents\\GitHub\\CETextFinder\\CETextFinder\\src\\word.docx";
+                        areaTexto.append(documento);
+                        LectorTXT lectorTXT = new LectorTXT();
+                        lectorTXT.BuscarPalabraStack(mensajeTexto, documento);
+                    }else {
+                        JOptionPane.showMessageDialog(null, "No se encontro el documento");
+                    }
+
+
+
                 } else if (banderilla == 2) {
                     System.out.println("ordenNombrebtn");
                 }else if (banderilla == 3) {

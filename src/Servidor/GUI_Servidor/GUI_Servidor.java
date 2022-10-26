@@ -6,6 +6,7 @@ import Servidor.Lectores.LectorTXT;
 import javax.swing.*;
 import java.awt.*;
 import java.io.DataInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
@@ -59,10 +60,12 @@ public class GUI_Servidor extends JFrame implements Runnable {
                 mensajeTexto = paqueteRecibido.getMensajeTexto();
 
                 if (banderilla == 1){
-                    System.out.println("antes");
                     LectorTXT txt= new LectorTXT();
-                    String l = txt.leerGraficp();
-                    System.out.println(l);
+                    /*String l = txt.leerGraficp();
+                    areaTexto.append(l);*/
+                    File archivo = new File("prueba.txt");
+                    txt.buscarPalabra(archivo,mensajeTexto);
+                    areaTexto.append(String.valueOf(txt.buscarPalabra(archivo,mensajeTexto)));
                 } else if (banderilla == 2) {
                     System.out.println("ordenNombrebtn");
                 }else if (banderilla == 3) {

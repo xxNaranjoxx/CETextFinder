@@ -1,6 +1,7 @@
 package Servidor.GUI_Servidor;
 
 import Cliente.PaqueteEnvio;
+import Servidor.Lectores.LecotrPDF;
 import Servidor.Lectores.LectorTXT;
 
 import javax.swing.*;
@@ -61,17 +62,24 @@ public class GUI_Servidor extends JFrame implements Runnable {
 
                 if (banderilla == 1){
                     if(documentoEnvio == 0){
-                        documento = "C:\\Users\\Sebastián Naranjo\\Documents\\GitHub\\CETextFinder\\CETextFinder\\src\\prueba.txt";
+
+                        documento = "src\\Servidor\\Archivos\\prueba.txt";
                         areaTexto.append(documento + "\n" + mensajeTexto);
                         LectorTXT lectorTXT = new LectorTXT();
                         lectorTXT.BuscarPalabraStack(mensajeTexto, documento);
+
                     } else if (documentoEnvio == 1) {
-                        documento = "C:\\Users\\Sebastián Naranjo\\Documents\\GitHub\\CETextFinder\\CETextFinder\\src\\pdf.pdf";
-                        areaTexto.append(documento);
-                        LectorTXT lectorTXT = new LectorTXT();
-                        lectorTXT.BuscarPalabraStack(mensajeTexto, documento);
+
+                        documento = "src\\pdf.pdf";
+                        LecotrPDF lecotrPDF = new LecotrPDF();
+                        try {
+                            areaTexto.append(lecotrPDF.importarPDF("src\\pdf.pdf"));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }else if (documentoEnvio == 2){
-                        documento = "C:\\Users\\Sebastián Naranjo\\Documents\\GitHub\\CETextFinder\\CETextFinder\\src\\word.docx";
+
+                        documento = "src\\word.docx";
                         areaTexto.append(documento);
                         LectorTXT lectorTXT = new LectorTXT();
                         lectorTXT.BuscarPalabraStack(mensajeTexto, documento);
@@ -90,8 +98,6 @@ public class GUI_Servidor extends JFrame implements Runnable {
                 }else if (banderilla == 5) {
                     System.out.println("eliminarDocBtn");
                 }else if (banderilla == 6) {
-                    System.out.println("anadirDocBtn");
-                }else if (banderilla == 7) {
                     System.out.println("indizarBtn");
                 }
 

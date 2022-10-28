@@ -68,16 +68,13 @@ public class LectorTXT {
     public void BuscarPalabraStack(String palabra, String documento) throws FileNotFoundException {
         JOptionPane.showMessageDialog(null,"hola");
         int val = 0;
-        //String extiste = "null";
-            /*System.out.println("Enter the word to be searched for");
-            Scanner input = new Scanner(System.in);
-            palabra = input.next();*/
+
             Scanner file = new Scanner(new File(documento));
 
             while(file.hasNextLine()){
                 String line = file.nextLine();
                 if(line.indexOf(palabra) != -1){
-                    JOptionPane.showMessageDialog(null,"Word EXISTS in the file");
+                    JOptionPane.showMessageDialog(null,"Esa palabra si está en el documento");
                     val = 1;
                     break;
                 }else{
@@ -86,7 +83,7 @@ public class LectorTXT {
                 }
             }
             if(val == 0){
-                JOptionPane.showMessageDialog(null,"Word does not exist");
+                JOptionPane.showMessageDialog(null,"Esa palabra no está en el documento");
             }
 
 

@@ -1,7 +1,7 @@
 package Servidor.GUI_Servidor;
 
 import Cliente.PaqueteEnvio;
-import Servidor.Lectores.LecotrPDF;
+import Servidor.Lectores.LectorPDF;
 import Servidor.Lectores.LectorTXT;
 
 import javax.swing.*;
@@ -71,7 +71,7 @@ public class GUI_Servidor extends JFrame implements Runnable {
                     } else if (documentoEnvio == 1) {
 
                         documento = "src\\pdf.pdf";
-                        LecotrPDF lecotrPDF = new LecotrPDF();
+                        LectorPDF lecotrPDF = new LectorPDF();
                         try {
                             areaTexto.append(lecotrPDF.importarPDF("src\\pdf.pdf"));
                         } catch (Exception e) {

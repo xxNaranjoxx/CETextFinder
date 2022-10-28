@@ -16,6 +16,7 @@ public class GUI_Cliente extends JFrame {
 
     public JPanel panelReproductor;
     private String banderilla;
+    private JList jListDocs;
 
     public GUI_Cliente(){
         this.setSize(750,450);

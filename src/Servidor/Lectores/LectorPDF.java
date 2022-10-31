@@ -1,41 +1,37 @@
 package Servidor.Lectores;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-
-
+import Servidor.Arboles.Binario.ArbolBinario;
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.pdf.PDFParser;
 import org.apache.tika.sax.BodyContentHandler;
-
 import org.xml.sax.SAXException;
 
+import javax.swing.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
-
-import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 
 
 public class LectorPDF {
+
     BodyContentHandler handler = new BodyContentHandler(-1);
     Metadata metadata = new Metadata();
     ParseContext parseContext = new ParseContext();
     FileInputStream inputStream;
     PDFParser pdfParser = new PDFParser();
+    ArbolBinario arbolBinario = new ArbolBinario();
 
     public LectorPDF() {
     }//Constructor
 
     /***
-     * Este metodo parsea los documentos pdf
+     * Este método parsea los documentos pdf
      * @param filepath
      * @return
      * @throws FileNotFoundException
@@ -57,64 +53,63 @@ public class LectorPDF {
     }//importarPDF
 
     /***
-     * Este metodo agrega todas las palabras de lo documentos pdf en el arbol binario
+     * Este método agrega todas las palabras de los documentos pdf en el arbol binario
      * @throws IOException
      */
-    public void agregarpalbraArbol() throws IOException {
-        String tipofichero = "pdf"; // solo tomaremos ficheros con esta extension
+    public void indexarPDF(String documento) throws IOException {
+        String tipoFichero = "pdf"; // solo tomaremos ficheros con esta extension
 
-        String ruta = "D:\\Algoritmos\\next\\src\\Archivos\\";
-        String documento = "pdf.pdf";//
-        String fichero = ruta + documento;
-        System.out.println("Fichero a analizar =" + documento);
-        int numero = documento.length() - 3; //calcula donde empieza la extension del fichero
+        //String ruta = "D:\\Algoritmos\\next\\src\\Archivos\\";
+        //String pdf = "pdf.pdf";//
+        //String fichero = ruta + pdf;
+        //System.out.println("Fichero a analizar =" + pdf);
+        //int numero = pdf.length() - 3; //calcula donde empieza la extension del fichero
 
         // System.out.println(«numero=»+numero);
-        String sub = documento.substring(numero); //calcula la extension del fichero
+        //String sub = pdf.substring(numero); //calcula la extension del fichero
 
         //abrimos el PDF
-        PdfReader reader = new PdfReader(fichero);
+        PdfReader reader = new PdfReader(documento);
 
         int pages = reader.getNumberOfPages();
         System.out.println("Este PDF tiene " + pages + " paginas.");
 
-        //empezamos la coversion a pdf
-        String page = PdfTextExtractor.getTextFromPage(reader, 1); ////<———————————————–aqui da errror
-        System.out.println("Contenido del documento de la pagina " + pages);
+        //empezamos la conversion a pdf
+        String page = PdfTextExtractor.getTextFromPage(reader, 1); ////<———————————————–aqui da error
+        System.out.println("Contenido del pdf de la pagina " + pages);
         System.out.println("\n\n" + page + "\n\n");
 
+        /*if (page.contains(palabra)) {
+            JOptionPane.showMessageDialog(null, "Si se encontró esa frase");
+
+        }*/
+
         /////////////////////////////////////////////////////////////////////
-        //     solo procesaremos los ficheros con la extrension pdf        //
+        //     solo procesaremos los ficheros con la extension pdf        //
         ////////////////////////////////////////////////////////////////////
 
         //para procesar el texto lo copiamos a una cadena
         String nombreFichero = page; //Fichero;
 
+        int contadorlineas = 0;
 
         Scanner in = new Scanner(nombreFichero);
 
-        while (in.hasNext()) //leemos toda la cadena
-        {
-            System.out.println(in.next());
+        //hacer arbol nuevo para incluir las lista de ocurrencias
+        //
+        //while
+        while (in.hasNext()) {
+            //System.out.println(in.next());
+            arbolBinario.insertar(in.next());
 
-        } //while
-        in.close();
-    }//agregarpalbraArbol
-
-    public String getDocumentText() {
-        return handler.toString();
-    }//getDocumentText
-
-
-
-    public Map<String, String> getMetadata() {
-        String[] metadatanames = metadata.names();
-        Map<String, String> metamap = new HashMap<>();
-        for (String name : metadatanames) {
-            metamap.put(name, metadata.get(name));
         }
-        return metamap;
-    }//getMetadata
+        System.out.println("INDEXAR PDF");
+        arbolBinario.inorden();
+        System.out.println("INDEXAR PDF");
+        in.close();
+
+
+    }//agregarPalabraArbol
 
 
 }//fin clase

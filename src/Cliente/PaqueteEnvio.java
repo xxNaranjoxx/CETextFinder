@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class PaqueteEnvio implements Serializable {
     private String mensajeTexto;
-    private int banderilla;
+    private int banderillaBoton;
 
-    private int documentoEnvio;
+    private int banderillaDocumentoEnvio;
 
     public String getMensajeTexto() {
         return mensajeTexto;
@@ -16,19 +16,19 @@ public class PaqueteEnvio implements Serializable {
         this.mensajeTexto = mensajeTexto;
     }
 
-    public int getBanderilla() {
-        return banderilla;
+    public int getBanderillaBoton() {
+        return banderillaBoton;
     }
 
-    public void setBanderilla(int banderilla) {
-        this.banderilla = banderilla;
+    public void setBanderillaBoton(int banderillaBoton) {
+        this.banderillaBoton = banderillaBoton;
     }
 
-    public int getDocumentoEnvio() {
-        return documentoEnvio;
+    public int getBanderillaDocumentoEnvio() {
+        return banderillaDocumentoEnvio;
     }
 
-    public void setDocumentoEnvio(int documentoEnvio) {
-        this.documentoEnvio = documentoEnvio;
+    public void setBanderillaDocumentoEnvio(int banderillaDocumentoEnvio) {
+        this.banderillaDocumentoEnvio = banderillaDocumentoEnvio;
     }
 }//fin clase

@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="tika-app-2.5.0">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../../Librerias/tika-app-2.5.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../Escritorio/Amor/Librerias/tika-app-2.5.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

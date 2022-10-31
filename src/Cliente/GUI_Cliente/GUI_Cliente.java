@@ -19,10 +19,10 @@ public class GUI_Cliente extends JFrame {
     private JList jListDocs;
 
     public GUI_Cliente(){
-        this.setSize(750,450);
+        setBounds(100,150,750,450);
+        setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
-        this.setTitle("Reproductor");
+        this.setTitle("CETexFinder");
 
         colocarPanel();
         colocarComponentes();
@@ -100,15 +100,15 @@ public class GUI_Cliente extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Socket miSocket = new Socket(InetAddress.getLocalHost(),9999);
+                    Socket miSocket = new Socket("192.168.178.42",9991);
 
                     PaqueteEnvio datos = new PaqueteEnvio();
 
                     datos.setMensajeTexto(campo1.getText());
 
-                    datos.setBanderilla(1);
+                    datos.setBanderillaBoton(1);
 
-                    datos.setDocumentoEnvio((jListDocs.getSelectedIndex()));
+                    datos.setBanderillaDocumentoEnvio((jListDocs.getSelectedIndex()));
 
                     ObjectOutputStream paqueteDatos = new ObjectOutputStream(miSocket.getOutputStream());
 
@@ -142,11 +142,11 @@ public class GUI_Cliente extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Socket miSocket = new Socket(InetAddress.getLocalHost(),9999);
+                    Socket miSocket = new Socket(InetAddress.getLocalHost(),9991);
 
                     PaqueteEnvio datos = new PaqueteEnvio();
 
-                    datos.setBanderilla(2);
+                    datos.setBanderillaBoton(2);
 
                     ObjectOutputStream paqueteDatos = new ObjectOutputStream(miSocket.getOutputStream());
 
@@ -169,13 +169,13 @@ public class GUI_Cliente extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Socket miSocket = new Socket(InetAddress.getLocalHost(),9999);
+                    Socket miSocket = new Socket(InetAddress.getLocalHost(),9991);
 
                     PaqueteEnvio datos = new PaqueteEnvio();
 
                     datos.setMensajeTexto(campo1.getText());
 
-                    datos.setBanderilla(3);
+                    datos.setBanderillaBoton(3);
 
                     ObjectOutputStream paqueteDatos = new ObjectOutputStream(miSocket.getOutputStream());
 
@@ -197,13 +197,13 @@ public class GUI_Cliente extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Socket miSocket = new Socket(InetAddress.getLocalHost(),9999);
+                    Socket miSocket = new Socket(InetAddress.getLocalHost(),9991);
 
                     PaqueteEnvio datos = new PaqueteEnvio();
 
                     datos.setMensajeTexto(campo1.getText());
 
-                    datos.setBanderilla(4);
+                    datos.setBanderillaBoton(4);
 
                     ObjectOutputStream paqueteDatos = new ObjectOutputStream(miSocket.getOutputStream());
 
@@ -226,13 +226,13 @@ public class GUI_Cliente extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Socket miSocket = new Socket(InetAddress.getLocalHost(),9999);
+                    Socket miSocket = new Socket(InetAddress.getLocalHost(),9991);
 
                     PaqueteEnvio datos = new PaqueteEnvio();
 
                     datos.setMensajeTexto(campo1.getText());
 
-                    datos.setBanderilla(5);
+                    datos.setBanderillaBoton(5);
 
                     ObjectOutputStream paqueteDatos = new ObjectOutputStream(miSocket.getOutputStream());
 
@@ -277,13 +277,13 @@ public class GUI_Cliente extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Socket miSocket = new Socket(InetAddress.getLocalHost(),9999);
+                    Socket miSocket = new Socket(InetAddress.getLocalHost(),9991);
 
                     PaqueteEnvio datos = new PaqueteEnvio();
 
                     datos.setMensajeTexto(campo1.getText());
 
-                    datos.setBanderilla(6);
+                    datos.setBanderillaBoton(6);
 
                     ObjectOutputStream paqueteDatos = new ObjectOutputStream(miSocket.getOutputStream());
 

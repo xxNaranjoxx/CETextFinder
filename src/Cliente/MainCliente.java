@@ -2,6 +2,8 @@ package Cliente;
 
 import Cliente.GUI_Cliente.GUI_Cliente;
 
+import java.io.IOException;
+
 public class MainCliente {
 
     public static void main(String[] args) {

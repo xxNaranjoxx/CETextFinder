@@ -1,8 +1,11 @@
 package Servidor.GUI_Servidor;
 
 import Cliente.PaqueteEnvio;
+import Servidor.Lectores.LectorDOCX;
 import Servidor.Lectores.LectorPDF;
 import Servidor.Lectores.LectorTXT;
+import Servidor.Servidor;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,8 +19,11 @@ public class GUI_Servidor extends JFrame implements Runnable {
 
     private JTextArea areaTexto;
 
+    Servidor servidor1 = new Servidor();
+
+
     public GUI_Servidor() {
-        setBounds(600, 200, 280, 350);
+        setBounds(850, 200, 280, 350);
 
         JPanel milamina = new JPanel();
 
@@ -34,16 +40,17 @@ public class GUI_Servidor extends JFrame implements Runnable {
         Thread miHilo = new Thread(this);
         miHilo.start();
 
+
     }//constructor
 
     @Override
     public void run() {
 
         try {
-            ServerSocket servidor = new ServerSocket(9999);
+            ServerSocket servidor = new ServerSocket(9991);
 
             int banderilla,documentoEnvio;
-            String mensajeTexto, documento;
+            String mensajeTexto, documento,documento1,documento2,documento3;
 
             PaqueteEnvio paqueteRecibido;
 
@@ -54,35 +61,36 @@ public class GUI_Servidor extends JFrame implements Runnable {
 
                 paqueteRecibido = (PaqueteEnvio) paqueteDatos.readObject();
 
-                banderilla = paqueteRecibido.getBanderilla();
+                banderilla = paqueteRecibido.getBanderillaBoton();
 
                 mensajeTexto = paqueteRecibido.getMensajeTexto();
 
-                documentoEnvio = paqueteRecibido.getDocumentoEnvio();
+                documentoEnvio = paqueteRecibido.getBanderillaDocumentoEnvio();
 
                 if (banderilla == 1){
+                    //TXT
                     if(documentoEnvio == 0){
 
                         documento = "src\\Servidor\\Archivos\\prueba.txt";
                         areaTexto.append(documento + "\n" + mensajeTexto);
                         LectorTXT lectorTXT = new LectorTXT();
-                        lectorTXT.BuscarPalabraStack(mensajeTexto, documento);
+                        lectorTXT.indexarTXT(documento);
+                        //lectorTXT.buscarPalabraTXT(mensajeTexto, documento);
 
+                    //PDF
                     } else if (documentoEnvio == 1) {
 
-                        documento = "src\\pdf.pdf";
-                        LectorPDF lecotrPDF = new LectorPDF();
-                        try {
-                            areaTexto.append(lecotrPDF.importarPDF("src\\pdf.pdf"));
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }else if (documentoEnvio == 2){
+                        documento = "src\\Servidor\\Archivos\\pdf.pdf";
+                        areaTexto.append(documento + "\n" + mensajeTexto);
+                        LectorPDF lectorPDF = new LectorPDF();
+                        lectorPDF.indexarPDF(documento);
 
-                        documento = "src\\word.docx";
+                    //DOCX
+                    }else if (documentoEnvio == 2){
+                        documento = "src\\Servidor\\Archivos\\word.docx";
                         areaTexto.append(documento);
-                        LectorTXT lectorTXT = new LectorTXT();
-                        lectorTXT.BuscarPalabraStack(mensajeTexto, documento);
+                        LectorDOCX lectorDOCX = new LectorDOCX();
+                        lectorDOCX.indexarDOCX(documento);
                     }else {
                         JOptionPane.showMessageDialog(null, "No se encontro el documento");
                     }
@@ -98,6 +106,10 @@ public class GUI_Servidor extends JFrame implements Runnable {
                 }else if (banderilla == 5) {
                     System.out.println("eliminarDocBtn");
                 }else if (banderilla == 6) {
+                    documento1 = "src\\Servidor\\Archivos\\prueba.txt";
+                    documento2 = "src\\Servidor\\Archivos\\pdf.pdf";
+                    documento3 = "src\\Servidor\\Archivos\\word.docx";
+                    servidor1.indexarDocs(documento1,documento2,documento3);
                     System.out.println("indizarBtn");
                 }
 
@@ -108,6 +120,8 @@ public class GUI_Servidor extends JFrame implements Runnable {
 
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
+        } catch (InvalidFormatException e) {
+            throw new RuntimeException(e);
         }
 
 

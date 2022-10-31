@@ -1,10 +1,9 @@
-package Servidor.Arboles;
+package Servidor.Arboles.Binario;
 
-public class Arbol {
+public class ArbolBinario {
+    private NodoArbolBinario raiz;
 
-    private NodoArbol raiz;
-
-    public Arbol() {
+    public ArbolBinario() {
 
     }
 
@@ -12,11 +11,11 @@ public class Arbol {
         return existe(this.raiz, busqueda);
     }
 
-    private boolean existe(NodoArbol n, String busqueda) {
+    private boolean existe(NodoArbolBinario n, String busqueda) {
         if (n == null) {
             return false;
         }
-        if (n.getDato().equals(busqueda)) {
+        if (n.getDato().equalsIgnoreCase(busqueda)) {
             return true;
         } else if (busqueda.compareTo(n.getDato()) < 0) {
             return existe(n.getIzquierda(), busqueda);
@@ -28,29 +27,29 @@ public class Arbol {
 
     public void insertar(String dato) {
         if (this.raiz == null) {
-            this.raiz = new NodoArbol(dato);
+            this.raiz = new NodoArbolBinario(dato);
         } else {
             this.insertar(this.raiz, dato);
         }
     }
 
-    private void insertar(NodoArbol padre, String dato) {
+    private void insertar(NodoArbolBinario padre, String dato) {
         if (dato.compareTo(padre.getDato()) > 0) {
             if (padre.getDerecha() == null) {
-                padre.setDerecha(new NodoArbol(dato));
+                padre.setDerecha(new NodoArbolBinario(dato));
             } else {
                 this.insertar(padre.getDerecha(), dato);
             }
         } else {
             if (padre.getIzquierda() == null) {
-                padre.setIzquierda(new NodoArbol(dato));
+                padre.setIzquierda(new NodoArbolBinario(dato));
             } else {
                 this.insertar(padre.getIzquierda(), dato);
             }
         }
     }
 
-    private void preorden(NodoArbol n) {
+    private void preorden(NodoArbolBinario n) {
         if (n != null) {
             n.imprimirDato();
             preorden(n.getIzquierda());
@@ -58,7 +57,7 @@ public class Arbol {
         }
     }
 
-    private void inorden(NodoArbol n) {
+    private void inorden(NodoArbolBinario n) {
         if (n != null) {
             inorden(n.getIzquierda());
             n.imprimirDato();
@@ -66,7 +65,7 @@ public class Arbol {
         }
     }
 
-    private void postorden(NodoArbol n) {
+    private void postorden(NodoArbolBinario n) {
         if (n != null) {
             postorden(n.getIzquierda());
             postorden(n.getDerecha());
@@ -85,5 +84,4 @@ public class Arbol {
     public void postorden() {
         this.postorden(this.raiz);
     }
-
 }//fin clase

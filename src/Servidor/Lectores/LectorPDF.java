@@ -3,113 +3,93 @@ package Servidor.Lectores;
 import Servidor.Arboles.Binario.ArbolBinario;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
-import org.apache.tika.exception.TikaException;
-import org.apache.tika.metadata.Metadata;
-import org.apache.tika.parser.ParseContext;
-import org.apache.tika.parser.pdf.PDFParser;
-import org.apache.tika.sax.BodyContentHandler;
-import org.xml.sax.SAXException;
 
-import javax.swing.*;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 
 public class LectorPDF {
 
-    BodyContentHandler handler = new BodyContentHandler(-1);
-    Metadata metadata = new Metadata();
-    ParseContext parseContext = new ParseContext();
-    FileInputStream inputStream;
-    PDFParser pdfParser = new PDFParser();
-    ArbolBinario arbolBinario = new ArbolBinario();
+
+    private String fechaPDF;
+    ArbolBinario arbolBinarioPDF = new ArbolBinario();
+
+    private int contadorPalabrasPDF = 50;
 
     public LectorPDF() {
+        this.contadorPalabrasPDF = 0;
     }//Constructor
 
     /***
-     * Este método parsea los documentos pdf
-     * @param filepath
-     * @return
-     * @throws FileNotFoundException
-     */
-    public String importarPDF(String filepath) throws FileNotFoundException {
-        inputStream = new FileInputStream(new File(filepath));
-        try {
-            pdfParser.parse(inputStream, handler, metadata, parseContext);
-        } catch (TikaException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (SAXException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        return handler.toString();
-    }//importarPDF
-
-    /***
-     * Este método agrega todas las palabras de los documentos pdf en el arbol binario
+     * Esta funcion indexa todos los documentos de tipo PDF
+     * @param palabra se le pasa pr parametro la palabra que se desea buscar en el documento
+     * @param documento se le pasa por parametro el documento que se quiere bucar
      * @throws IOException
      */
-    public void indexarPDF(String documento) throws IOException {
-        String tipoFichero = "pdf"; // solo tomaremos ficheros con esta extension
+    public void indexarPDF(String palabra, String documento) throws IOException {
+        String texto = "";
 
-        //String ruta = "D:\\Algoritmos\\next\\src\\Archivos\\";
-        //String pdf = "pdf.pdf";//
-        //String fichero = ruta + pdf;
-        //System.out.println("Fichero a analizar =" + pdf);
-        //int numero = pdf.length() - 3; //calcula donde empieza la extension del fichero
+        File file = new File(documento);
 
-        // System.out.println(«numero=»+numero);
-        //String sub = pdf.substring(numero); //calcula la extension del fichero
+        long ms = file.lastModified();
 
-        //abrimos el PDF
-        PdfReader reader = new PdfReader(documento);
+        Date date = new Date(ms);
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+
+        String dia = Integer.toString(calendar.get(Calendar.DATE));
+        String mes = Integer.toString(calendar.get(Calendar.MONTH));
+        String annio = Integer.toString(calendar.get(Calendar.YEAR));
+        String hora = Integer.toString(calendar.get(Calendar.HOUR_OF_DAY));
+        String minuto = Integer.toString(calendar.get(Calendar.MINUTE));
+        String segundo = Integer.toString(calendar.get(Calendar.SECOND));
+
+        fechaPDF = dia + mes + annio + hora + minuto + segundo;
+        System.out.println(fechaPDF);
+
+        PdfReader reader = new PdfReader(String.valueOf(file));
 
         int pages = reader.getNumberOfPages();
-        System.out.println("Este PDF tiene " + pages + " paginas.");
 
-        //empezamos la conversion a pdf
-        String page = PdfTextExtractor.getTextFromPage(reader, 1); ////<———————————————–aqui da error
-        System.out.println("Contenido del pdf de la pagina " + pages);
-        System.out.println("\n\n" + page + "\n\n");
-
-        /*if (page.contains(palabra)) {
-            JOptionPane.showMessageDialog(null, "Si se encontró esa frase");
-
-        }*/
-
-        /////////////////////////////////////////////////////////////////////
-        //     solo procesaremos los ficheros con la extension pdf        //
-        ////////////////////////////////////////////////////////////////////
-
-        //para procesar el texto lo copiamos a una cadena
-        String nombreFichero = page; //Fichero;
-
-        int contadorlineas = 0;
-
-        Scanner in = new Scanner(nombreFichero);
-
-        //hacer arbol nuevo para incluir las lista de ocurrencias
-        //
-        //while
-        while (in.hasNext()) {
-            //System.out.println(in.next());
-            arbolBinario.insertar(in.next());
+        for (int i = 1; i <= reader.getNumberOfPages(); i++) {
+            texto = texto + PdfTextExtractor.getTextFromPage(reader,i);
 
         }
-        System.out.println("INDEXAR PDF");
-        arbolBinario.inorden();
-        System.out.println("INDEXAR PDF");
+
+        Scanner in = new Scanner(texto);
+
+        while (in.hasNext()) {
+            arbolBinarioPDF.insertar(in.next());
+            this.contadorPalabrasPDF ++;
+        }
+        System.out.println(this.contadorPalabrasPDF);
+        arbolBinarioPDF.existe(palabra);
         in.close();
 
 
     }//agregarPalabraArbol
 
+    /***
+     * Setters y getters para poder utilizarlos
+     * @return
+     */
+    public String getFechaPDF() {
+        return fechaPDF;
+    }
 
+    public void setFechaPDF(String fechaPDF) {
+        this.fechaPDF = fechaPDF;
+    }
+
+    public int getContadorPalabrasPDF() {
+        return contadorPalabrasPDF;
+    }
+
+    public void setContadorPalabrasPDF(int contadorPalabrasPDF) {
+        this.contadorPalabrasPDF = contadorPalabrasPDF;
+    }
 }//fin clase

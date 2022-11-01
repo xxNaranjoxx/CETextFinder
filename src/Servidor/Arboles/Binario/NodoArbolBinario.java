@@ -4,6 +4,10 @@ public class NodoArbolBinario {
     private String dato;
     private NodoArbolBinario izquierda, derecha;
 
+    /***
+     * Clase nodo arbol, fundamental para la construccion del arbol binario
+     * @param dato
+     */
     public NodoArbolBinario(String dato) {
         this.dato = dato;
         this.izquierda = this.derecha = null;

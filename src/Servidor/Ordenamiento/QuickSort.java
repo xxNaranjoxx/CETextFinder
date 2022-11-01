@@ -7,73 +7,73 @@ public class QuickSort {
        smaller (smaller than pivot) to left of
        pivot and all greater elements to right
        of pivot */
-    int partition(int arr[], int low, int high)
-    {
-        int pivot = arr[high];
-        int i = (low-1); // index of smaller element
-        for (int j=low; j<high; j++)
-        {
-            // If current element is smaller than or
-            // equal to pivot
-            if (arr[j] <= pivot)
-            {
-                i++;
 
-                // swap arr[i] and arr[j]
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
+    /***
+     * Esta funcion hace la particion del arreglo
+     * @param arreglo arreglo que se desea ordenar
+     * @param izquierda
+     * @param derecha
+     * @return
+     */
+    public int particion(String arreglo[], int izquierda, int derecha) {
+        // Elegimos el pivote, es el primero
+        String pivote = arreglo[izquierda];
+        // Ciclo infinito
+        while (true) {
+            // Mientras cada elemento desde la izquierda esté en orden (sea menor que el
+            // pivote) continúa avanzando el índice
+            while (arreglo[izquierda].compareTo(pivote) < 0) {
+                izquierda++;
             }
-        }
+            // Mientras cada elemento desde la derecha esté en orden (sea mayor que el
+            // pivote) continúa disminuyendo el índice
+            while (arreglo[derecha].compareTo(pivote) > 0) {
+                derecha--;
+            }
 
-        // swap arr[i+1] and arr[high] (or pivot)
-        int temp = arr[i+1];
-        arr[i+1] = arr[high];
-        arr[high] = temp;
+            if (izquierda >= derecha) {
+                // Indicar "en dónde nos quedamos" para poder dividir el arreglo de nuevo
+                // y ordenar los demás elementos
+                return derecha;
+            } else {
 
-        return i+1;
-    }
-
-
-    /* The main function that implements QuickSort()
-      arr[] --> Array to be sorted,
-      low  --> Starting index,
-      high  --> Ending index */
-    void sort(int arr[], int low, int high)
-    {
-        if (low < high)
-        {
-            /* pi is partitioning index, arr[pi] is
-              now at right place */
-            int pi = partition(arr, low, high);
-
-            // Recursively sort elements before
-            // partition and after partition
-            sort(arr, low, pi-1);
-            sort(arr, pi+1, high);
+                String temporal = arreglo[izquierda];
+                arreglo[izquierda] = arreglo[derecha];
+                arreglo[derecha] = temporal;
+      /*
+      Ya intercambiamos, pero seguimos avanzando los índices una vez más
+      */
+                izquierda++;
+                derecha--;
+            }
+            // El while se repite hasta que izquierda >= derecha
         }
     }
 
-    /* A utility function to print array of size n */
-    static void printArray(int arr[])
-    {
+    /***
+     * Esta funcion es la de divide y venceras
+     * @param arreglo
+     * @param izquierda
+     * @param derecha
+     */
+    public void quicksort(String arreglo[], int izquierda, int derecha) {
+        if (izquierda < derecha) {
+            int indiceParticion = particion(arreglo, izquierda, derecha);
+            quicksort(arreglo, izquierda, indiceParticion);
+            quicksort(arreglo, indiceParticion + 1, derecha);
+        }
+    }
+
+    /***
+     * Esta funcion va a imprimir  el arreglo
+     * @param arr
+     */
+    static void printArray(int arr[]) {
         int n = arr.length;
-        for (int i=0; i<n; ++i)
-            System.out.print(arr[i]+" ");
+        for (int i = 0; i < n; ++i)
+            System.out.print(arr[i] + " ");
         System.out.println();
-    }
+    }//printArray
 
-    /* Driver program
-    public static void main(String args[])
-    {
-        int arr[] = {10, 7, 8, 9, 1, 5};
-        int n = arr.length;
-
-        QuickSort ob = new QuickSort();
-        ob.sort(arr, 0, n-1);
-
-        System.out.println("sorted array");
-        printArray(arr);
-    }*/
-}
+}//fin clase
 

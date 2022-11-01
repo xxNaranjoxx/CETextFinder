@@ -1,5 +1,7 @@
 package Servidor.Arboles.Binario;
 
+import javax.swing.*;
+
 public class ArbolBinario {
     private NodoArbolBinario raiz;
 
@@ -7,24 +9,33 @@ public class ArbolBinario {
 
     }
 
-    public boolean existe(String busqueda) {
-        return existe(this.raiz, busqueda);
+    /***
+     * funcion recursiva para ver si un nodo existe en el arbol
+     * @param busqueda
+     */
+    public void existe(String busqueda) {
+        existe(this.raiz, busqueda);
     }
 
-    private boolean existe(NodoArbolBinario n, String busqueda) {
+    private void existe(NodoArbolBinario n, String busqueda) {
         if (n == null) {
-            return false;
+            JOptionPane.showMessageDialog(null, "Esa palabra no existe");
+            return;
         }
         if (n.getDato().equalsIgnoreCase(busqueda)) {
-            return true;
+            JOptionPane.showMessageDialog(null, "Esa palabra si está en el documento");
         } else if (busqueda.compareTo(n.getDato()) < 0) {
-            return existe(n.getIzquierda(), busqueda);
+             existe(n.getIzquierda(), busqueda);
         } else {
-            return existe(n.getDerecha(), busqueda);
+             existe(n.getDerecha(), busqueda);
         }
 
     }
 
+    /**
+     * Funcion recursiva para insertar un nodo nuevo al arbol binario
+     * @param dato
+     */
     public void insertar(String dato) {
         if (this.raiz == null) {
             this.raiz = new NodoArbolBinario(dato);
@@ -49,6 +60,10 @@ public class ArbolBinario {
         }
     }
 
+    /***
+     * Esta funcion da como resultado el "preorden" del arbol
+     * @param n
+     */
     private void preorden(NodoArbolBinario n) {
         if (n != null) {
             n.imprimirDato();
@@ -56,7 +71,10 @@ public class ArbolBinario {
             preorden(n.getDerecha());
         }
     }
-
+    /***
+     * Esta funcion da como resultado el "inorden" del arbol
+     * @param n
+     */
     private void inorden(NodoArbolBinario n) {
         if (n != null) {
             inorden(n.getIzquierda());
@@ -64,7 +82,10 @@ public class ArbolBinario {
             inorden(n.getDerecha());
         }
     }
-
+    /***
+     * Esta funcion da como resultado el "posorden" del arbol
+     * @param n
+     */
     private void postorden(NodoArbolBinario n) {
         if (n != null) {
             postorden(n.getIzquierda());

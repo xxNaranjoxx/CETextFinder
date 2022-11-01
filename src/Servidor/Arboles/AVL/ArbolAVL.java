@@ -4,7 +4,11 @@ public class ArbolAVL {
 
     NodoArbolAVL root;
 
-    // A utility function to get the height of the tree
+    /***
+     * Esta duncion va a dar como resultado la altura del nodo
+     * @param N
+     * @return
+     */
     int height(NodoArbolAVL N) {
         if (N == null)
             return 0;
@@ -12,7 +16,12 @@ public class ArbolAVL {
         return N.height;
     }
 
-    // A utility function to get maximum of two integers
+    /**
+     * Esta funcion va a dar como resultado el nodo maximo de dos nodos
+     * @param a Nodo 1 a comparar
+     * @param b Nodo 2 a comparar
+     * @return
+     */
     int max(int a, int b) {
         return (a > b) ? a : b;
     }
@@ -35,6 +44,11 @@ public class ArbolAVL {
         return x;
     }
 
+    /***
+     * Esta funcion va a dar como resultado una rotacion a la iquierda con respecto a x nodo
+     * @param x nodo
+     * @return
+     */
     // A utility function to left rotate subtree rooted with x
     // See the diagram given above.
     NodoArbolAVL leftRotate(NodoArbolAVL x) {
@@ -53,6 +67,11 @@ public class ArbolAVL {
         return y;
     }
 
+    /***
+     * Esta funcion devuelve el balance del nodo que se solicita
+     * @param N nodo
+     * @return
+     */
     // Get Balance factor of node N
     int getBalance(NodoArbolAVL N) {
         if (N == null)
@@ -61,6 +80,12 @@ public class ArbolAVL {
         return height(N.left) - height(N.right);
     }
 
+    /***
+     * Esta funcion inserta
+     * @param node
+     * @param key
+     * @return
+     */
     NodoArbolAVL insert(NodoArbolAVL node, int key) {
 
         /* 1.  Perform the normal BST insertion */
@@ -108,6 +133,10 @@ public class ArbolAVL {
         return node;
     }
 
+    /***
+     * Esta funcion devuelve el arbol de forma "preorden"
+     * @param node
+     */
     // A utility function to print preorder traversal
     // of the tree.
     // The function also prints height of every node

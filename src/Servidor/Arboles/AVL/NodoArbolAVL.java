@@ -4,6 +4,10 @@ public class NodoArbolAVL {
     int key, height;
     NodoArbolAVL left, right;
 
+    /**
+     * Clase nodo, fundamental para construir el arbol
+     * @param d
+     */
     NodoArbolAVL(int d) {
         key = d;
         height = 1;

@@ -5,26 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b07f5058-c4aa-412c-b9f9-2e39cce2fdf6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/itextpdf_5_4_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainPrincipal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Servidor/Arboles/AVL/ArbolAVL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Servidor/Arboles/AVL/NodoArbolAVL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/itextpdf_5_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/tika_app_2_5_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/tika_app_2_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/javacsv.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Cliente/Documentos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/tika_app_2_5_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/tika_app_2_5_01.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CETextFinder.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CETextFinder.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Cliente/GUI_Cliente/GUI_Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cliente/GUI_Cliente/GUI_Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cliente/MainCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cliente/MainCliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Cliente/PaqueteEnvio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cliente/PaqueteEnvio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Servidor/Arboles/Arbol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servidor/Arboles/Binario/ArbolBinario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Servidor/Arboles/NodoArbol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servidor/Arboles/Binario/NodoArbolBinario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Servidor/Archivos/pdf.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servidor/Archivos/pdf.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Servidor/Archivos/prueba.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servidor/Archivos/prueba.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servidor/Arboles/AVL/ArbolAVL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servidor/Arboles/AVL/ArbolAVL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servidor/Arboles/AVL/NodoArbolAVL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servidor/Arboles/AVL/NodoArbolAVL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servidor/Arboles/Binario/ArbolBinario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servidor/Arboles/Binario/ArbolBinario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servidor/Arboles/Binario/NodoArbolBinario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servidor/Arboles/Binario/NodoArbolBinario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Servidor/Archivos/word.docx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servidor/Archivos/word.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Servidor/GUI_Servidor/GUI_Servidor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servidor/GUI_Servidor/GUI_Servidor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Servidor/Lectores/LectorDOCX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servidor/Lectores/LectorDOCX.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Servidor/Lectores/LectorPDF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servidor/Lectores/LectorPDF.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Servidor/Lectores/LectorTXT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servidor/Lectores/LectorTXT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servidor/Ordenamiento/BubbleSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servidor/Ordenamiento/BubbleSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servidor/Ordenamiento/QuickSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servidor/Ordenamiento/QuickSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servidor/Ordenamiento/RadixSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servidor/Ordenamiento/RadixSort.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Servidor/Servidor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servidor/Servidor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,17 +50,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/Dani2/OneDrive/Escritorio/Amor/Librerias/tika-app-2.5.0.jar",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Dani2/OneDrive/Escritorio/Amor/Librerias/itxtPDF/aspose-pdf-22.9-jdk16.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Algoritmos\CETextFinder\src\Archivos" />
